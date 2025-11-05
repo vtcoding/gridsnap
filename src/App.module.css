@@ -10,9 +10,79 @@
   position: absolute;
   text-align: center;
   transform: translateX(-50%);
+  row-gap: 20px;
   width: 1000px;
 }
 
 .title {
   font-size: 32px;
+}
+
+.upload {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  text-align: center;
+  row-gap: 20px;
+}
+
+.input {
+  text-align: center;
+}
+
+.controls {
+  align-items: center;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: min-content min-content min-content;
+  text-align: center;
+  width: 100%;
+}
+
+.control {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, max-content);
+}
+
+.controlsInput {
+  background-color: #EEE;
+  border: 0;
+  height: 25px;
+  padding: 10px;
+  outline: none;
+}
+
+.color {
+  height: 45px;
+  opacity: 0.4;
+  width: 45px;
+}
+
+.color.selected {
+  opacity: 1;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 20px;
+    width: calc(100% - 20px);
+  }
+  
+  .controls {
+    grid-template-columns: 1fr;
+  }
 }
