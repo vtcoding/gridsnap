@@ -122,7 +122,7 @@ const App = () => {
       <div className={styles.container}>
         {/* Title */}
         <div className={styles.title}>
-          <b>SNAP</b>GRID
+          <b>GRID</b>SNAP
         </div>
         <div className={styles.upload}>
           <div className={styles.uploadTitle}>

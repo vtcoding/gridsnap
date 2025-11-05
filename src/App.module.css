@@ -1,5 +1,6 @@
 .app {
   background-color: #FFF;
+  color: #000;
   width: 100vw;
   height: 100vh;
 }
@@ -49,6 +50,7 @@
 
 .controlsInput {
   background-color: #EEE;
+  color: #000;
   border: 0;
   height: 25px;
   padding: 10px;
