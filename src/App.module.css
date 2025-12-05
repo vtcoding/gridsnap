@@ -79,6 +79,10 @@
   background-color: blue;
 }
 
+.yellow {
+  background-color: yellow;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     padding: 20px;

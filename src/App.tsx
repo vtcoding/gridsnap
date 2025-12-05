@@ -5,11 +5,15 @@ const App = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [cols, setCols] = useState<string>("30");
   const [rows, setRows] = useState<string>("12");
+  const [lineWidth, setLineWidth] = useState<string>("5");
+  const [fontSize, setFontSize] = useState<string>("12");
   const [color, setColor] = useState<string>("green");
 
   const validateInput = (value: string, type: string) => {
     if (type === "columns") setCols(value);
     if (type === "rows") setRows(value);
+    if (type === "lineWidth") setLineWidth(value);
+    if (type === "fontSize") setFontSize(value);
   }
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -40,7 +44,7 @@ const App = () => {
     const cellHeight = canvas.height / parseInt(rows);
 
     ctx.strokeStyle = color; // very thin
-    ctx.lineWidth = 5;
+    ctx.lineWidth = parseInt(lineWidth);
 
     // Draw vertical lines
     for (let c = 1; c < parseInt(cols); c++) {
@@ -62,7 +66,7 @@ const App = () => {
 
     // Set the same color for font (label) as the grid lines
     ctx.fillStyle = color; // Set font color to match grid color
-    ctx.font = `12px Arial`; // Dynamically set font size
+    ctx.font = `${fontSize}px Arial`; // Dynamically set font size
     ctx.textAlign = "left"; // Align text to the left of the cell
     ctx.textBaseline = "top"; // Align text to the top of the cell
 
@@ -89,7 +93,7 @@ const App = () => {
       img?.addEventListener("load", drawGrid);
       return () => img?.removeEventListener("load", drawGrid);
     }
-  }, [rows, cols, imageSrc, color]);
+  }, [imageSrc, rows, cols, fontSize, lineWidth, color]);
 
   // Merge image + grid into downloadable image
   const downloadImage = () => {
@@ -146,10 +150,19 @@ const App = () => {
             <input value={rows} onChange={(e) => validateInput(e.target.value, "rows")} className={styles.controlsInput} />
           </div>
           <div className={styles.control}>
+            Line width (pixels):
+            <input value={lineWidth} onChange={(e) => validateInput(e.target.value, "lineWidth")} className={styles.controlsInput} />
+          </div>
+          <div className={styles.control}>
+            Font size (pixels):
+            <input value={fontSize} onChange={(e) => validateInput(e.target.value, "fontSize")} className={styles.controlsInput} />
+          </div>
+          <div className={styles.control}>
             Grid color:
             <div onClick={() => setColor("green")} className={`${styles.color} ${styles.green} ${color === "green" ? styles.selected : ""}`}></div>
             <div onClick={() => setColor("red")} className={`${styles.color} ${styles.red} ${color === "red" ? styles.selected : ""}`}></div>
             <div onClick={() => setColor("blue")} className={`${styles.color} ${styles.blue} ${color === "blue" ? styles.selected : ""}`}></div>
+            <div onClick={() => setColor("yellow")} className={`${styles.color} ${styles.yellow} ${color === "yellow" ? styles.selected : ""}`}></div>
           </div>
         </div>
         {/* Grid container */}
