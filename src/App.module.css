@@ -83,10 +83,20 @@
   background-color: yellow;
 }
 
+.button {
+  background-color: #333;
+  color: #FFF;
+}
+
+.button:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     padding: 20px;
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
   }
   
   .controls {

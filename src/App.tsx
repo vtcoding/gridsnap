@@ -193,7 +193,7 @@ const App = () => {
           </div>
         </div>
         {/* Download */}
-        <button onClick={downloadImage}>Download</button>
+        <button className={styles.button} onClick={downloadImage}>Download</button>
       </div>
     </div>
   )
