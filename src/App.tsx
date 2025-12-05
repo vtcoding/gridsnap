@@ -6,6 +6,7 @@ const App = () => {
   const [cols, setCols] = useState<string>("30");
   const [rows, setRows] = useState<string>("12");
   const [lineWidth, setLineWidth] = useState<string>("5");
+  const [showLabels, setShowLabels] = useState<boolean>(true);
   const [fontSize, setFontSize] = useState<string>("12");
   const [color, setColor] = useState<string>("green");
 
@@ -78,7 +79,9 @@ const App = () => {
         const y = r * cellHeight; // Y position of the top-left corner
 
         // Add some padding for the text to avoid touching the borders
-        ctx.fillText(label, x + 5, y + 5); // Adjusted to the top-left of each cell with padding
+        if (showLabels) {
+          ctx.fillText(label, x + 5, y + 5); // Adjusted to the top-left of each cell with padding
+        }
       }
     }
   };
@@ -93,7 +96,7 @@ const App = () => {
       img?.addEventListener("load", drawGrid);
       return () => img?.removeEventListener("load", drawGrid);
     }
-  }, [imageSrc, rows, cols, fontSize, lineWidth, color]);
+  }, [imageSrc, rows, cols, showLabels, fontSize, lineWidth, color]);
 
   // Merge image + grid into downloadable image
   const downloadImage = () => {
@@ -153,9 +156,18 @@ const App = () => {
             Line width (pixels):
             <input value={lineWidth} onChange={(e) => validateInput(e.target.value, "lineWidth")} className={styles.controlsInput} />
           </div>
-          <div className={styles.control}>
+          <div className={`${styles.control}`}>
+          </div>
+          <div className={`${styles.control}`}>
+            Show labels:
+            <input type="checkbox" checked={showLabels} onChange={(e) => setShowLabels(e.target.checked)} className={styles.controlsInput} />
             Font size (pixels):
-            <input value={fontSize} onChange={(e) => validateInput(e.target.value, "fontSize")} className={styles.controlsInput} />
+            <input 
+              disabled={!showLabels}
+              value={fontSize}
+              onChange={(e) => validateInput(e.target.value, "fontSize")}
+              className={`${styles.controlsInput} ${!showLabels && styles.disabled} `}
+            />
           </div>
           <div className={styles.control}>
             Grid color:

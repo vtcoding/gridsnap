@@ -34,18 +34,17 @@
 
 .controls {
   align-items: center;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: min-content min-content min-content;
-  text-align: center;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .control {
   align-items: center;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  grid-template-columns: repeat(5, max-content);
 }
 
 .controlsInput {
@@ -55,6 +54,10 @@
   height: 25px;
   padding: 10px;
   outline: none;
+}
+
+.controlsInput.disabled {
+  opacity: 0.3;
 }
 
 .color {
